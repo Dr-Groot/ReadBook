@@ -12,4 +12,40 @@ And when you select any image and click on convert, you will get the text like t
 
 ## Important Codes:
 
-For recognising the text from any image first you have to import vison and convert the image into cgImage type. Then make a handler of ##VNImageRequestHandler## type
+For recognising the text from any image first you have to import vison and convert the image into cgImage type. Then make a handler of **VNImageRequestHandler** type and a request of **VNRecognizeTextRequest** type. After that assign observation to request and extract text from the observation and ask handler to handle the request. You can even add some request property that how text should be extracted like, recognitionLanguage, recognitionLevel, etc.
+
+```swift
+  func requestText() {
+        guard let cgImage = self.recievedImage?.cgImage else { return }
+        let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
+        var request = VNRecognizeTextRequest(completionHandler: nil)
+        var text = ""
+
+        request = VNRecognizeTextRequest(completionHandler: {(request, error) in
+            guard let observations = request.results as? [VNRecognizedTextObservation] else { fatalError("Invalid ovservation")}
+
+            for observation in observations {
+                guard let topCandidate = observation.topCandidates(1).first else {
+                    print("Not candidate")
+                    continue
+                }
+                text += "\n\(topCandidate.string)"
+            }
+            DispatchQueue.main.async {
+                self.imageTextView.text = text
+            }
+        })
+
+        request.customWords = ["custOm"]
+        request.minimumTextHeight = 0.03125
+        request.recognitionLevel = .accurate
+        request.recognitionLanguages = ["en_US"]
+        request.usesLanguageCorrection = true
+
+        let requests = [request]
+
+        DispatchQueue.global(qos: .userInitiated).async {
+            try?handler.perform(requests)
+        }
+    }
+```
