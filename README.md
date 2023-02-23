@@ -15,6 +15,8 @@ And when you select any image and click on convert, you will get the text like t
 For recognising the text from any image first you have to import vison and convert the image into cgImage type. Then make a handler of **VNImageRequestHandler** type and a request of **VNRecognizeTextRequest** type. After that assign observation to request and extract text from the observation and ask handler to handle the request. You can even add some request property that how text should be extracted like, recognitionLanguage, recognitionLevel, etc.
 
 ```swift
+  import Vision
+  
   func requestText() {
         guard let cgImage = self.recievedImage?.cgImage else { return }
         let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
@@ -47,5 +49,21 @@ For recognising the text from any image first you have to import vison and conve
         DispatchQueue.global(qos: .userInitiated).async {
             try?handler.perform(requests)
         }
+    }
+```
+
+For speech we use AVFoundation and its **AVSpeechSynthesizer** and also in this you can set the speech property as you like. For ex: voice, rate, etc.
+
+```swift  
+  import AVFoundation
+  
+  let synthesizer = AVSpeechSynthesizer()
+  
+  func requestSound(text: String) {
+        let utterance = AVSpeechUtterance(string: text)
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-GB")
+        utterance.rate = 0.5
+
+        synthesizer.speak(utterance)
     }
 ```
