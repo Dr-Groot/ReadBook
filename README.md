@@ -9,3 +9,7 @@ Read Book is an iOS application which helps us to recognise text from an image a
 And when you select any image and click on convert, you will get the text like this and you can even play that text as shown below:
 
 ![IMG_2188](https://user-images.githubusercontent.com/63160825/220830678-8902e882-2db1-45c3-acab-fe3757133bc9.PNG)
+
+## Important Codes:
+
+For recognising the text from any image first you have to import vison and convert the image into cgImage type. Then make a handler of ##VNImageRequestHandler## type
