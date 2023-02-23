@@ -70,6 +70,8 @@ For speech we use AVFoundation and its **AVSpeechSynthesizer** and also in this 
 
 > We can even recognise text using CoreML and GoogleMLKit/TextRecognition
 
+## OCR
+
 Basically Text Recognition is a part of OCR. OCR stands for Optical character recognition or optical character reader. OCR Will scan the document or image file and then converting the text into a machine-readable.
 
 ![image](https://user-images.githubusercontent.com/63160825/220832651-8009174d-0ef6-477d-ba8b-4dddccbc7f83.png)
@@ -124,3 +126,7 @@ Like this there are many Approach, Its based on what tech we need
 **Post-Processing**
 
 Computer also do some mistake (OCR make some spelling mistake while recognition), So here will try to correct it.
+
+**So in iOS we use Vision for the OCR Process**
+
+Thank You, Happy Learning!
