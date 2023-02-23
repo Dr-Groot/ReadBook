@@ -67,3 +67,60 @@ For speech we use AVFoundation and its **AVSpeechSynthesizer** and also in this 
         synthesizer.speak(utterance)
     }
 ```
+
+> We can even recognise text using CoreML and GoogleMLKit/TextRecognition
+
+Basically Text Recognition is a part of OCR. OCR stands for Optical character recognition or optical character reader. OCR Will scan the document or image file and then converting the text into a machine-readable.
+
+![image](https://user-images.githubusercontent.com/63160825/220832651-8009174d-0ef6-477d-ba8b-4dddccbc7f83.png)
+
+let me break process one by one and explain you
+
+**Image Acquisition**
+
+In this process, an Image/ document will be scanned and replace each pixel in an image with a black or a white pixel
+Example Image:
+
+![image](https://user-images.githubusercontent.com/63160825/220832739-1bb79391-ea17-4c47-902b-461cbd1f5cf2.png)
+
+
+**Pre-processing**
+
+Areas outside the text will be removed
+Example Image:
+
+![image](https://user-images.githubusercontent.com/63160825/220832856-2f7802ad-f50a-4295-adca-423587d92be6.png)
+
+After Pre-processing that black and white image we will get like the above image.
+
+
+**Segmentation**
+
+![image](https://user-images.githubusercontent.com/63160825/220832992-5a037e18-df6b-4148-ad3d-799c90b9927b.png)
+
+Just look at the 22 it was like joined with one and other , So in this process OCR will segmenting these type
+
+Feature Extraction:
+
++ In this process each and every character will be Recognize and convert as machine-readable text
++ OCR have many font will compare and convert it
++ There are many Approach, will show some two
+
+**Approach #1**
+
+Will scan by single, single character and compare with functions
+
+![image](https://user-images.githubusercontent.com/63160825/220833158-00f6e63c-3f2f-4c29-984c-1b3491be67ba.png)
+
+**Approach #2**
+
+In this Approach will take line by line (Like Human eyes reading )and will convert it
+
+![image](https://user-images.githubusercontent.com/63160825/220833264-ddde483e-c682-40b4-aff6-c1fe9a482589.png)
+
+Like this there are many Approach, Its based on what tech we need
+
+
+**Post-Processing**
+
+Computer also do some mistake (OCR make some spelling mistake while recognition), So here will try to correct it.
